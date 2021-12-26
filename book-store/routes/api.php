@@ -20,4 +20,5 @@ Route::post('login', [UserController::class, 'login']);
   
 Route::middleware('api')->group(function () {
     Route::resource('books', BookController::class);
+    Route::resource('users', UserController::class);
 });
