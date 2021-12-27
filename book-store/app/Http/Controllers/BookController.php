@@ -76,7 +76,6 @@ class BookController extends Controller
     public function show($id)
     {
         //
-        log::info('show...........');
         $book = book::find($id);
         if (is_null($book)) {
             return $this->sendError('Book does not exist.');
@@ -96,7 +95,6 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        log::info('edit...........');
         // $book = Book::find($id);
         // return $book;
     }
@@ -111,7 +109,6 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         //
-        log::info('update...........');
         $input = $request->all();
         $validator = Validator::make($input, [
             'title' => 'required',
