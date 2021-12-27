@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Token;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
-class TokenController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class TokenController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Token  $token
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Token $token)
+    public function show(Order $order)
     {
         //
     }
@@ -52,10 +52,10 @@ class TokenController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Token  $token
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Token $token)
+    public function edit(Order $order)
     {
         //
     }
@@ -64,10 +64,10 @@ class TokenController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Token  $token
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Token $token)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -75,10 +75,10 @@ class TokenController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Token  $token
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Token $token)
+    public function destroy(Order $order)
     {
         //
     }

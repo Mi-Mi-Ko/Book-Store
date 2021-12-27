@@ -26,6 +26,5 @@ class UserSeeder extends Seeder
             'user_type' => 1,
             'auth_status' => 1,
         ]);
-        
     }
 }
