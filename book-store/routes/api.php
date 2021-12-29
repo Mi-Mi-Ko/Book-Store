@@ -24,12 +24,12 @@ Route::middleware('api')->group(function () {
     Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/user/create', [UserController::class, 'store'])->name('user.create');
     Route::put('/user/edit/{id}', [UserController::class, 'store'])->name('user.update');
-    Route::get('/user/delete/{id}', [UserController::class, 'deleteUser'])->name('user.delete');
+    Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
     //ボックルート
     Route::get('/books', [BookController::class, 'index'])->name('book.list');
     Route::get('/book/edit/{id}', [BookController::class, 'edit'])->name('book.edit');
     Route::get('/book/list/{cat_id}',[BookController::class, 'search'])->name('book.search');
     Route::post('/book/create', [BookController::class, 'store'])->name('book.create');
     Route::put('/book/edit/{id}', [BookController::class, 'store'])->name('book.update');
-    Route::get('/book/delete/{id}', [BookController::class, 'deleteBook'])->name('book.delete');
+    Route::get('/book/delete/{id}', [BookController::class, 'delete'])->name('book.delete');
 });

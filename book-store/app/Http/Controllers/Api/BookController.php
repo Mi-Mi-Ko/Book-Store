@@ -63,4 +63,12 @@ class BookController extends Controller
             "data" => $books
         ]);
     }
+
+    public function delete($id) {
+        $books = $this->book->deleteBook($id);
+        return response()->json([
+            "success" => true,
+            "message" => "Book is deleted."
+        ]);
+    }
 }
