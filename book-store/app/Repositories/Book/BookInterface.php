@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Book;
 
 interface BookInterface
 {
@@ -8,7 +8,9 @@ interface BookInterface
 
     public function getBookById($id);
 
-    public function createOrUpdate( $id = null, $collection = [] );
+    public function searchByCategory($id);
+
+    public function createOrUpdate( $id = null, $input = []);
 
     public function deleteBook($id);
 }

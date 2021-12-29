@@ -24,4 +24,12 @@ class Book extends Model
         'is_available', 
         'status'
     ];
+
+    /**
+     * Get the categoy that owns the book.
+     */
+    public function categoy()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Repositories\Book;
 
+use Log;
 use App\Models\Book;
+use App\Models\Category;
 use App\Repositories\Book\BookInterface;
-use Illuminate\Support\Facades\Hash;
 
 class BookRepository implements BookInterface
 {   
@@ -20,18 +21,38 @@ class BookRepository implements BookInterface
         return Book::find($id);
     }
 
-    public function createOrUpdate( $id = null, $collection = [] )
-    {   
+    public function searchByCategory($id) {
+        $books = Category::find($id)->books;
+        return $books;
+    }
+
+    public function createOrUpdate($id = null, $input = [])
+    {
         if(is_null($id)) {
             $book = new Book;
-            // $book->name = $collection['name'];
-            // $book->email = $collection['email'];
-            // $book->password = Hash::make('password');
+            $book->title = $input['title'];
+            $book->author = $input['author'];
+            $book->description = $input['description'];
+            $book->category_id = $input['category_id'];
+            $book->rate = $input['rate'];
+            $book->publish_date = $input['publish_date'];
+            $book->url = $input['url'];
+            $book->is_available = $input['is_available'];
+            $book->status = $input['status'];
+            $book->user_id = 1;
             return $book->save();
         }
         $book = Book::find($id);
-        // $book->name = $collection['name'];
-        // $book->email = $collection['email'];
+        $book->title = $input['title'];
+        $book->author = $input['author'];
+        $book->description = $input['description'];
+        $book->category_id = $input['category_id'];
+        $book->rate = $input['rate'];
+        $book->publish_date = $input['publish_date'];
+        $book->url = $input['url'];
+        $book->is_available = $input['is_available'];
+        $book->status = $input['status'];
+        $book->user_id = 1;
         return $book->save();
     }
     

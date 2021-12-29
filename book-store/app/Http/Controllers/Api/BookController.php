@@ -36,4 +36,31 @@ class BookController extends Controller
             "data" => $book
         ]);
     }
+
+    public function store(Request $request, $id = null)
+    {   
+        $input = $request->except(['_token','_method']);
+        if(!is_null($id)) 
+        {
+            log::info('Book Update.........');
+            $this->book->createOrUpdate($id, $input);
+            return redirect()->route('book.edit', ['id' => $id]);
+        }
+        else
+        {
+            log::info('Book Create.........');
+            $this->book->createOrUpdate($id = null, $input);
+            return redirect()->route('book.list');
+        }
+    }
+    
+    public function search($id) {
+        log::info('Book search by category id.........');
+        $books = $this->book->searchByCategory($id);
+        return response()->json([
+            "success" => true,
+            "message" => "Book is fetched by category.",
+            "data" => $books
+        ]);
+    }
 }
