@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-use App\Repository\UserInterface;
-use App\Repository\UserRepository;
+use App\Repositories\User\UserInterface;
+use App\Repositories\Book\BookInterface;
+use App\Repositories\User\UserRepository;
+use App\Repositories\Book\BookRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,8 +19,8 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        $this->app->bind('App\Services\UserService');
         $this->app->bind(UserInterface::class, UserRepository::class);
+        $this->app->bind(BookInterface::class, BookRepository::class);
     }
 
     /**

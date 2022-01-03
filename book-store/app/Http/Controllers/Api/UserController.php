@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use Log;
 use Illuminate\Http\Request;
-//use App\Services\UserService;
-use App\Repository\UserInterface;
+use App\Repositories\User\UserInterface;
 
 class UserController extends Controller
 {
@@ -18,7 +17,7 @@ class UserController extends Controller
 
     public function index()
     {
-        log::info('Index.........');
+        log::info('getAllUsers.........');
         $users = $this->user->getAllUsers();
         return response()->json([
             "success" => true,
@@ -29,7 +28,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        log::info('Edit.........');
+        log::info('getUserById.........');
         $user = $this->user->getUserById($id);
         return response()->json([
             "success" => true,
@@ -37,20 +36,20 @@ class UserController extends Controller
             "data" => $user
         ]);
     }
+    public function store(Request $request, $id = null)
+    {   
+        $input = $request->except(['_token','_method']);
 
-// protected $userService;
-//     public function __construct(UserService $user_service)
-//     {
-//         $this->userService = $user_service;
-//     }
-
-//     public function index(Request $request)
-//     {
-//         $users = $this->userService->getuser();
-//         return response()->json([
-//             "success" => true,
-//             "message" => "User are fetched.",
-//             "data" => $users
-//         ]);
-//     }
+        if( ! is_null( $id ) ) 
+        {
+            log::info('create User.........');
+            $this->user->createOrUpdate($id, $input);
+        }
+        else
+        {
+            log::info('Update User.........');
+            $this->user->createOrUpdate($id = null, $input);
+        }
+        return redirect()->route('user.list');
+    }
 }
