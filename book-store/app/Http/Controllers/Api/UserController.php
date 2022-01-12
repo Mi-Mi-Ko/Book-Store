@@ -14,6 +14,37 @@ class UserController extends Controller
     {
         $this->user = $user;
     }
+    
+    public function login(Request $request)
+    {
+        Log::info('UserController Login....');
+        $token = $this->user->login($request);
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+            'message' => "User logged in successfully",
+        ]);
+    }
+
+    public function register(Request $request)
+    {
+        Log::info('UserController Register....');
+        $input = $request->except(['_token','_method']);
+        $token = $this->user->register($input);
+
+        return response()->json([
+            'message' => "User registered successfully",
+            'access_token' => $token,
+            'token_type' => 'Bearer',
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Log::info('UserController Logout....');
+        $this->user->logout($request);
+        return response()->json(['message' => 'User successfully signed out']);
+    }
 
     public function index()
     {
@@ -36,19 +67,15 @@ class UserController extends Controller
             "data" => $user
         ]);
     }
-    public function store(Request $request, $id = null)
+
+    public function update(Request $request, $id = null)
     {   
         $input = $request->except(['_token','_method']);
 
-        if( ! is_null( $id ) ) 
-        {
-            log::info('create User.........');
-            $this->user->createOrUpdate($id, $input);
-        }
-        else
+        if(!is_null($id)) 
         {
             log::info('Update User.........');
-            $this->user->createOrUpdate($id = null, $input);
+            $this->user->update($id, $input);
         }
         return redirect()->route('user.list');
     }
