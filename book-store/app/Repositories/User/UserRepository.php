@@ -2,7 +2,7 @@
 
 namespace App\Repositories\User;
 
-use Log;
+use Illuminate\Support\Facades\Log;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;

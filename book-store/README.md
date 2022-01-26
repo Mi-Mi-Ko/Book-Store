@@ -64,3 +64,18 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## swagger.json生成
+mimiko@Mis-MacBook-Air Book-Store % vendor/bin/swagger app/Http/Controllers/ -o ../swagger-docs/
+
+## swagger ui表示
+http://localhost:8081/#/
+
+## Run Project Flow
+docker-compose up -d
+
+docker-compose exec app bash
+
+cd Book-Store/
+
+Run migrate command

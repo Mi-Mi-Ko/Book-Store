@@ -1,0 +1,240 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Laravel API Specification",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/books": {
+            "get": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "\u672c\u60c5\u5831\u53d6\u5f97",
+                "description": "\u672c\u60c5\u5831\u3092\u53d6\u5f97\u3057\u307e\u3059\u3002",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request error"
+                    },
+                    "401": {
+                        "description": "Unauthorized error"
+                    }
+                }
+            }
+        },
+        "/api/book/create": {
+            "post": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "\u672c\u60c5\u5831\u767b\u9332",
+                "description": "\u672c\u60c5\u5831\u3092\u767b\u9332\u3057\u307e\u3059\u3002",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Book",
+                        "in": "body",
+                        "description": "List of book object",
+                        "schema": {
+                            "properties": {
+                                "title": {
+                                    "description": "\u30bf\u30a4\u30c8\u30eb",
+                                    "type": "string"
+                                },
+                                "author": {
+                                    "description": "\u7b46\u8005",
+                                    "type": "string"
+                                },
+                                "description": {
+                                    "description": "\u5185\u5bb9",
+                                    "type": "string"
+                                },
+                                "category_id": {
+                                    "description": "\u30ab\u30c6\u30b4\u30eaID",
+                                    "type": "integer"
+                                },
+                                "rate": {
+                                    "description": "\u7387",
+                                    "type": "integer"
+                                },
+                                "publish_date": {
+                                    "description": "\u958b\u59cb\u65e5",
+                                    "type": "string",
+                                    "format": "date"
+                                },
+                                "url": {
+                                    "description": "URL",
+                                    "type": "string"
+                                },
+                                "is_available": {
+                                    "description": "\u5229\u7528\u53ef\u80fd",
+                                    "type": "boolean"
+                                },
+                                "status": {
+                                    "description": "\u30b9\u30c6\u30fc\u30bf\u30b9",
+                                    "type": "integer"
+                                },
+                                "user_id": {
+                                    "description": "\u30e6\u30fc\u30b6\u30fcID",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request error"
+                    },
+                    "401": {
+                        "description": "Unauthorized error"
+                    }
+                }
+            }
+        },
+        "/api/book/list/{cat_id}": {
+            "get": {
+                "tags": [
+                    "Book"
+                ],
+                "summary": "\u672c\u60c5\u5831\u691c\u7d22",
+                "description": "\u672c\u60c5\u5831\u3092\u691c\u7d22\u3057\u307e\u3059\u3002",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "category_id",
+                        "in": "path",
+                        "description": "\u30ab\u30c6\u30b4\u30eaID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request error"
+                    },
+                    "401": {
+                        "description": "Unauthorized error"
+                    }
+                }
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "\u30e6\u30fc\u30b6\u30fc\u60c5\u5831\u53d6\u5f97",
+                "description": "\u30e6\u30fc\u30b6\u30fc\u60c5\u5831\u3092\u53d6\u5f97\u3057\u307e\u3059\u3002",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request error"
+                    },
+                    "401": {
+                        "description": "Unauthorized error"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "\u30e6\u30fc\u30b6\u30fc\u60c5\u5831\u767b\u9332",
+                "description": "\u30e6\u30fc\u30b6\u30fc\u60c5\u5831\u3092\u767b\u9332\u3057\u307e\u3059\u3002",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "User",
+                        "in": "body",
+                        "description": "List of user object",
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "description": "\u30e6\u30fc\u30b6\u30fc\u540d",
+                                    "type": "string"
+                                },
+                                "mail": {
+                                    "description": "\u30e1\u30fc\u30eb\u30a2\u30c9\u30ec\u30b9",
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "description": "\u30d1\u30b9\u30ef\u30fc\u30c9",
+                                    "type": "string"
+                                },
+                                "dob": {
+                                    "description": "\u751f\u5e74\u6708\u65e5",
+                                    "type": "string",
+                                    "format": "date"
+                                },
+                                "address": {
+                                    "description": "\u4f4f\u6240",
+                                    "type": "string"
+                                },
+                                "gender": {
+                                    "description": "\u6027\u5225",
+                                    "type": "integer"
+                                },
+                                "phone": {
+                                    "description": "\u96fb\u8a71\u756a\u53f7",
+                                    "type": "string"
+                                },
+                                "avatar_url": {
+                                    "description": "\u753b\u50cf",
+                                    "type": "string"
+                                },
+                                "user_type": {
+                                    "description": "\u30e6\u30fc\u30b6\u30fc\u30bf\u30a4\u30d7",
+                                    "type": "integer"
+                                },
+                                "auth_status": {
+                                    "description": "\u30e6\u30fc\u30b6\u30fc\u6a29\u9650",
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Bad Request error"
+                    },
+                    "401": {
+                        "description": "Unauthorized error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {}
+}
