@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use Log;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Repositories\User\UserInterface;
 
@@ -26,6 +26,77 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * @SWG\Get(
+     *     path="/api/users",
+     *     summary="ユーザー情報取得",
+     *     description="ユーザー情報を取得します。",
+     *     produces={"application/json"},
+     *     tags={"User"},
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Success",
+     *     ),
+     *     @SWG\Response(
+     *         response=400,
+     *         description="Bad Request error",
+     *     ),
+     *     @SWG\Response(
+     *         response=401,
+     *         description="Unauthorized error"
+     *     ),
+     * )
+     */
+    public function index()
+    {
+        log::info('getAllUsers.........');
+        $users = $this->user->getAllUsers();
+        return response()->json([
+            "success" => true,
+            "message" => "User are fetched.",
+            "data" => $users
+        ]);
+    }
+
+    /**
+     * @SWG\Post(
+     *     path="/api/register",
+     *     summary="ユーザー情報登録",
+     *     description="ユーザー情報を登録します。",
+     *     produces={"application/json"},
+     *     tags={"User"},
+     *     @SWG\Parameter(
+     *         in="body",
+     *         name="User",
+     *         description="List of user object",
+     *         @SWG\Schema(
+     *             type="object",
+     *             @SWG\Property(property="name", type="string", description="ユーザー名"),
+     *             @SWG\Property(property="mail", type="string", description="メールアドレス"),
+     *             @SWG\Property(property="password", type="string", description="パスワード"),
+     *             @SWG\Property(property="dob", type="string", format="date", description="生年月日"),
+     *             @SWG\Property(property="address", type="string", description="住所"),
+     *             @SWG\Property(property="gender", type="integer", description="性別"),
+     *             @SWG\Property(property="phone", type="string", description="電話番号"),
+     *             @SWG\Property(property="avatar_url", type="string", description="画像"),
+     *             @SWG\Property(property="user_type", type="integer", description="ユーザータイプ"),
+     *             @SWG\Property(property="auth_status", type="integer", description="ユーザー権限"),
+     *         )
+     *     ),
+     *     @SWG\Response(
+     *         response=200,
+     *         description="Success",
+     *     ),
+     *     @SWG\Response(
+     *         response=400,
+     *         description="Bad Request error",
+     *     ),
+     *     @SWG\Response(
+     *         response=401,
+     *         description="Unauthorized error"
+     *     ),
+     * )
+     */
     public function register(Request $request)
     {
         Log::info('UserController Register....');
@@ -44,17 +115,6 @@ class UserController extends Controller
         Log::info('UserController Logout....');
         $this->user->logout($request);
         return response()->json(['message' => 'User successfully signed out']);
-    }
-
-    public function index()
-    {
-        log::info('getAllUsers.........');
-        $users = $this->user->getAllUsers();
-        return response()->json([
-            "success" => true,
-            "message" => "User are fetched.",
-            "data" => $users
-        ]);
     }
 
     public function edit($id)

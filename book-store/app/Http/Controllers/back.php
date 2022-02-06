@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use Log;
+use Illuminate\Support\Facades\Log;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

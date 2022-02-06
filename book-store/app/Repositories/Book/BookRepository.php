@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Book;
 
-use Log;
+use Illuminate\Support\Facades\Log;
 use App\Models\Book;
 use App\Models\Category;
 use App\Repositories\Book\BookInterface;
